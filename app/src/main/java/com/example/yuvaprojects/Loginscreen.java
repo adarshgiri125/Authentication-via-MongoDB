@@ -49,15 +49,24 @@ public class Loginscreen extends AppCompatActivity {
                 String Usernames = edUsername.getText().toString();
                 String Passwords = edPassword.getText().toString();
                 Credentials credentials = Credentials.emailPassword(Usernames,Passwords);
+                if(Usernames.length() == 0 || Passwords.length() == 0) {
+
+                    Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Loginscreen.this,Loginscreen.class));
+                }
+//                else {
+//                    Toast.makeText(getApplicationContext(),"Login Succesful",Toast.LENGTH_SHORT).show();
+//                }
 
 
                 app.loginAsync(credentials, new App.Callback<User>() {
                     @Override
+
                     public void onResult(App.Result<User> result) {
                         String email = edUsername.getText().toString();
                         if(result.isSuccess()){
-                            Toast.makeText(getApplicationContext(),"Login succesfully",Toast.LENGTH_SHORT).show();
-                                  startActivity(new Intent(Loginscreen.this,Homescreen.class));
+                            Toast.makeText(getApplicationContext(),"Login Succesfull",Toast.LENGTH_SHORT).show();
+                                  startActivity(new Intent(Loginscreen.this,Landingpage.class));
 //                            app.getEmailPassword().sendResetPasswordEmailAsync(String.valueOf(email),result1 -> {
 //                                if(result.isSuccess()){
 //                                    Toast.makeText(getApplicationContext(),"Login succesful",Toast.LENGTH_SHORT).show();
@@ -76,22 +85,19 @@ public class Loginscreen extends AppCompatActivity {
                         }
                     }
 
+
+
                 });
 
-                if(Usernames.length() == 0 ||Passwords.length() == 0) {
 
-                    Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_SHORT).show();
-                }
-//                else {
-//                    Toast.makeText(getApplicationContext(),"Login Succesful",Toast.LENGTH_SHORT).show();
-//                }
+
 
             }
         });
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Register Here",Toast.LENGTH_SHORT).show();
+
                 startActivity(new Intent(Loginscreen.this,Registeruser.class));
             }
         });

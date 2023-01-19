@@ -48,7 +48,7 @@ public class Registeruser extends AppCompatActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Login Here",Toast.LENGTH_SHORT).show();
+
                 startActivity(new Intent(Registeruser.this, Loginscreen.class));
             }
         });

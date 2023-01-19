@@ -43,6 +43,9 @@ public class Homescreen extends AppCompatActivity {
     Button find;
     TextView finddetails;
     Button logout;
+    Button skip;
+    TextView collegename;
+    EditText Age;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -54,10 +57,13 @@ public class Homescreen extends AppCompatActivity {
         app = new App(new AppConfiguration.Builder(AppId).build());
 
         logout = findViewById(R.id.buttonLogout);
-        find = findViewById(R.id.buttonfind);
-        finddetails = findViewById(R.id.textViewfind);
+//        find = findViewById(R.id.buttonfind);
+//        finddetails = findViewById(R.id.textViewfind);
         Sendingtext = findViewById(R.id.editTextDetails);
         upload = findViewById(R.id.buttonupload);
+        skip = findViewById(R.id.buttoncontinue);
+        collegename = findViewById(R.id.editTextTextPersonName);
+        Age = findViewById(R.id.editTextAge);
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,47 +73,69 @@ public class Homescreen extends AppCompatActivity {
                 mongoDatabase = mongoClient.getDatabase("CourseData");
                 mongoCollection = mongoDatabase.getCollection("TestData");
 
-                mongoCollection.insertOne(new Document("user id", user.getId()).append("data", Sendingtext.getText().toString())).getAsync(result -> {
+                mongoCollection.insertOne(new Document("user id", user.getId()).append("User-Name", Sendingtext.getText().toString())).getAsync(result -> {
                     if (result.isSuccess()) {
                         Toast.makeText(getApplicationContext(),"Data send to Databse",Toast.LENGTH_SHORT).show();
                     } else {
                         Log.v("Data", "Sending Failed");
                     }
                 });
-
-
-
-            }
-        });
-        find.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Document queryfilter = new Document().append("data", Sendingtext.getText().toString());
-                mongoCollection.findOne(queryfilter).getAsync(result -> {
+                mongoCollection.insertOne(new Document("user id", user.getId()).append("College-name", collegename.getText().toString())).getAsync(result -> {
                     if (result.isSuccess()) {
-                        Toast.makeText(getApplicationContext(), "showing data from Databse", Toast.LENGTH_SHORT).show();
+
                     } else {
-                        Toast.makeText(getApplicationContext(), "Data not availbale", Toast.LENGTH_SHORT).show();
+                        Log.v("Data", "");
                     }
-                    Document resultdata = result.get();
-                    finddetails.setText(resultdata.getString("data"));
+                });
+                mongoCollection.insertOne(new Document("user id", user.getId()).append("User-Age", Age.getText().toString())).getAsync(result -> {
+                    if (result.isSuccess()) {
+
+                    } else {
+                        Log.v("Data", "");
+                    }
                 });
 
 
 
             }
         });
+//        find.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Document queryfilter = new Document().append("data", Sendingtext.getText().toString());
+//                mongoCollection.findOne(queryfilter).getAsync(result -> {
+//                    if (result.isSuccess()) {
+//                        Toast.makeText(getApplicationContext(), "showing data from Databse", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "Data not availbale", Toast.LENGTH_SHORT).show();
+//                    }
+//                    Document resultdata = result.get();
+//                    finddetails.setText(resultdata.getString("data"));
+//                });
+
+
+
+//            }
+//        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 app.currentUser().logOutAsync(result -> {
                     if(result.isSuccess()) {
-                        Toast.makeText(getApplicationContext(), "Log out successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Log out Successfull", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(Homescreen.this,Loginscreen.class));
                     }else{
                         Toast.makeText(getApplicationContext(), "Try Again", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("checkcource", "onClick: clicked");
+                startActivity(new Intent(Homescreen.this,Courses.class));
+                Log.d("checkcource", "onClick: entered");
             }
         });
 
