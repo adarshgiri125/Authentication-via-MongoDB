@@ -69,7 +69,7 @@ public class chapter extends AppCompatActivity {
         Document queryfilter = new Document().append("Co", "Machine Learning");
         mongoCollection.findOne(queryfilter).getAsync(result -> {
             if (result.isSuccess()){
-                Toast.makeText(getApplicationContext(),"Database Reading Successfull",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Database Reading Successfull",Toast.LENGTH_LONG).show();
                 Log.d("messagecheck", "onCreate: succefull");
                 Document Result= result.get();
                 Callview.setText(Result.getString("Co"));
