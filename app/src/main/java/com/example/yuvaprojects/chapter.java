@@ -38,7 +38,7 @@ public class chapter extends AppCompatActivity {
      User user;
      String appid = "yuva-demo-tdngt";
 
-//try reverting
+
 
     @SuppressLint("MissingInflatedId")
     @Override
