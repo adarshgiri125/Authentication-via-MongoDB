@@ -25,17 +25,18 @@ public class Courses extends AppCompatActivity {
        listView = findViewById(R.id.listCources);
 
 
+
         List<String> list = new ArrayList<>();
-        list.add("Data Structure Algorithm");
-        list.add("Object Oriented Programming");
-        list.add("Discrete Structure");
-        list.add("Digital System");
-        list.add("Web Development");
-        list.add("Android Development");
-        list.add("Version Control");
-        list.add("Basics of C++");
-        list.add("Machine Learning");
-        list.add("DBMS");
+        list.add("SEMESTER - 1");
+        list.add("SEMESTER - 2");
+        list.add("SEMESTER - 3");
+        list.add("SEMESTER - 4");
+        list.add("SEMESTER - 5");
+        list.add("SEMESTER - 6");
+        list.add("SEMESTER - 7");
+        list.add("SEMESTER - 8");
+        list.add("OVERVIEW");
+
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,list);
         listView.setAdapter(arrayAdapter);
@@ -44,49 +45,43 @@ public class Courses extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position==0){
-                    startActivity(new Intent(Courses.this,Unit.class));
+                    startActivity(new Intent(Courses.this,chapter.class));
 
                 }
                 if(position==1){
-                    startActivity(new Intent(Courses.this,Unit.class));
+                    startActivity(new Intent(Courses.this,chapter.class));
 
                 }
                 if(position==2){
-                    startActivity(new Intent(Courses.this,Unit.class));
+                    startActivity(new Intent(Courses.this,chapter.class));
 
                 }
                 if(position==3){
-                    startActivity(new Intent(Courses.this,Unit.class));
+                    startActivity(new Intent(Courses.this,chapter.class));
 
                 }
                 if(position==4){
-                    startActivity(new Intent(Courses.this,Unit.class));
+                    startActivity(new Intent(Courses.this,chapter.class));
 
                 }
                 if(position==5){
-                    startActivity(new Intent(Courses.this,Unit.class));
+                    startActivity(new Intent(Courses.this,chapter.class));
 
                 }
                 if(position==6){
-                    startActivity(new Intent(Courses.this,Unit.class));
+                    startActivity(new Intent(Courses.this,chapter.class));
 
                 }
                 if(position==7){
-                    startActivity(new Intent(Courses.this,Unit.class));
+                    startActivity(new Intent(Courses.this,chapter.class));
 
                 }
                 if(position==8){
-                    startActivity(new Intent(Courses.this,Unit.class));
+                    startActivity(new Intent(Courses.this,chapter.class));
 
                 }
-                if(position==9){
-                    startActivity(new Intent(Courses.this,Unit.class));
 
-                }
-                if(position==10){
-                    startActivity(new Intent(Courses.this,Unit.class));
 
-                }
 
             }
         });

@@ -5,15 +5,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.mongodb.App;
+import io.realm.mongodb.AppConfiguration;
+import io.realm.mongodb.User;
+import io.realm.mongodb.mongo.MongoClient;
+import io.realm.mongodb.mongo.MongoCollection;
+import io.realm.mongodb.mongo.MongoDatabase;
+
 public class Unit extends AppCompatActivity {
+
+
+
+
+
     ListView listView;
 
     @SuppressLint("MissingInflatedId")
@@ -21,6 +39,13 @@ public class Unit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unit);
+
+
+
+
+
+
+
          listView = findViewById(R.id.Unitview);
 
         List<String> list = new ArrayList<>();
@@ -44,37 +69,37 @@ public class Unit extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
                 if(position == 1) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
                 if(position == 2) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
                 if(position == 3) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
                 if(position == 4) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
                 if(position == 5) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
                 if(position == 6) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
                 if(position == 7) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
                 if(position == 8) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
                 if(position == 9) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
                 if(position == 10) {
-                    startActivity(new Intent(Unit.this, chapter.class));
+                    Toast.makeText(getApplicationContext(),"Content will be uploaded soon",Toast.LENGTH_LONG).show();
                 }
 
             }

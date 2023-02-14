@@ -7,30 +7,30 @@
     android:background="@drawable/bg5"
     tools:context=".Homescreen">
 
-    <!--    <TextView-->
-<!--        android:id="@+id/textViewfind"-->
-<!--        android:layout_width="211dp"-->
-<!--        android:layout_height="73dp"-->
-<!--        android:text="TextView"-->
-<!--        android:textColor="#EAE0E0"-->
-<!--        android:textColorHint="#ECE1E1"-->
-<!--        android:textSize="22sp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/buttonfind"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/buttonupload"-->
-<!--        app:layout_constraintVertical_bias="0.804" />-->
+    <TextView
+        android:id="@+id/textViewfind"
+        android:layout_width="211dp"
+        android:layout_height="73dp"
+        android:text="TextView"
+        android:textColor="#EAE0E0"
+        android:textColorHint="#ECE1E1"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonfind"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonupload"
+        app:layout_constraintVertical_bias="0.804" />
 
-<!--    <Button-->
-<!--        android:id="@+id/buttonfind"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="152dp"-->
-<!--        android:text="Find Details"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <Button
+        android:id="@+id/buttonfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="152dp"
+        android:text="Find Details"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -44,23 +44,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.051" />
 
     <Button
         android:id="@+id/buttonupload"
         android:layout_width="178dp"
         android:layout_height="66dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginBottom="132dp"
         android:text="Send"
-        app:layout_constraintBottom_toTopOf="@+id/buttoncontinue"
+        app:layout_constraintBottom_toTopOf="@+id/buttonfind"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextDetails"
         android:layout_width="254dp"
         android:layout_height="71dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Your Name"
         android:inputType="textPersonName"
@@ -68,7 +69,7 @@
         android:textColorHint="#EFE9E9"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -86,7 +87,7 @@
         android:id="@+id/buttoncontinue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="24dp"
         android:text=" Continue"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,6 +99,7 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="256dp"
         android:layout_height="66dp"
+        android:layout_marginBottom="4dp"
         android:ems="10"
         android:hint="College Name"
         android:inputType="textPersonName"
@@ -105,27 +107,29 @@
         android:textColorHint="#E6E2E2"
         app:layout_constraintBottom_toTopOf="@+id/editTextAge"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextAge"
         android:layout_width="261dp"
         android:layout_height="62dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Age"
+        android:hint="Age"
         android:textColor="#F3F0F0"
         android:textColorHint="#EDE4E4"
         app:layout_constraintBottom_toTopOf="@+id/buttonupload"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="64dp"
         android:text="Enter Your Details"
         android:textColor="#E8DDDD"
         android:textSize="19sp"

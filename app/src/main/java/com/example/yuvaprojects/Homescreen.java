@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
+import android.service.autofill.UserData;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,10 @@ import android.widget.Toast;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import io.realm.Realm;
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
@@ -26,7 +31,9 @@ import io.realm.mongodb.User;
 import io.realm.mongodb.mongo.MongoClient;
 import io.realm.mongodb.mongo.MongoCollection;
 import io.realm.mongodb.mongo.MongoDatabase;
+import io.realm.mongodb.mongo.iterable.FindIterable;
 import io.realm.mongodb.mongo.iterable.MongoCursor;
+import io.realm.mongodb.mongo.options.InsertManyResult;
 
 
 public class Homescreen extends AppCompatActivity {
@@ -47,6 +54,7 @@ public class Homescreen extends AppCompatActivity {
     TextView collegename;
     EditText Age;
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +65,8 @@ public class Homescreen extends AppCompatActivity {
         app = new App(new AppConfiguration.Builder(AppId).build());
 
         logout = findViewById(R.id.buttonLogout);
-//        find = findViewById(R.id.buttonfind);
-//        finddetails = findViewById(R.id.textViewfind);
+        find = findViewById(R.id.buttonfind);
+        finddetails = findViewById(R.id.textViewfind);
         Sendingtext = findViewById(R.id.editTextDetails);
         upload = findViewById(R.id.buttonupload);
         skip = findViewById(R.id.buttoncontinue);
@@ -71,52 +79,51 @@ public class Homescreen extends AppCompatActivity {
                 user = app.currentUser();
                 mongoClient = user.getMongoClient("mongodb-atlas");
                 mongoDatabase = mongoClient.getDatabase("CourseData");
-                mongoCollection = mongoDatabase.getCollection("TestData");
+                mongoCollection = mongoDatabase.getCollection("Test");
 
-                mongoCollection.insertOne(new Document("user id", user.getId()).append("User-Name", Sendingtext.getText().toString())).getAsync(result -> {
-                    if (result.isSuccess()) {
+
+
+              //  asList is replaced by singletonlist -->
+                List<Document> UserData = Collections.singletonList(
+                        new Document("User", Sendingtext.getText().toString()).append("Name", Sendingtext.getText().toString())
+                                .append("College", collegename.getText().toString())
+                                .append("Age", Age.getText().toString()));
+
+                mongoCollection.insertMany(UserData).getAsync(result -> {
+                      if (result.isSuccess()) {
                         Toast.makeText(getApplicationContext(),"Data send to Databse",Toast.LENGTH_SHORT).show();
                     } else {
                         Log.v("Data", "Sending Failed");
                     }
                 });
-                mongoCollection.insertOne(new Document("user id", user.getId()).append("College-name", collegename.getText().toString())).getAsync(result -> {
-                    if (result.isSuccess()) {
 
-                    } else {
-                        Log.v("Data", "");
-                    }
-                });
-                mongoCollection.insertOne(new Document("user id", user.getId()).append("User-Age", Age.getText().toString())).getAsync(result -> {
-                    if (result.isSuccess()) {
 
+            }
+        });
+        find.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Document queryfilter = new Document().append("User", Sendingtext.getText().toString());
+                mongoCollection.findOne(queryfilter).getAsync(result -> {
+                    if (result.isSuccess()) {
+                        Toast.makeText(getApplicationContext(), "showing data from Databse", Toast.LENGTH_SHORT).show();
+                        Log.d("finding check", "onClick: here");
+                        Document Resultdata = result.get();
+                        finddetails.setText(Resultdata.getString("User"));
                     } else {
-                        Log.v("Data", "");
+                        Toast.makeText(getApplicationContext(), "Data not availbale", Toast.LENGTH_SHORT).show();
                     }
+
                 });
+
+
+
+
 
 
 
             }
         });
-//        find.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Document queryfilter = new Document().append("data", Sendingtext.getText().toString());
-//                mongoCollection.findOne(queryfilter).getAsync(result -> {
-//                    if (result.isSuccess()) {
-//                        Toast.makeText(getApplicationContext(), "showing data from Databse", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "Data not availbale", Toast.LENGTH_SHORT).show();
-//                    }
-//                    Document resultdata = result.get();
-//                    finddetails.setText(resultdata.getString("data"));
-//                });
-
-
-
-//            }
-//        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,6 +153,30 @@ public class Homescreen extends AppCompatActivity {
 
 
     }
+
+
+       //---> inserting a single document ---->//
+//                mongoCollection.insertOne(new Document("user id", user.getId()).append("User-Name", Sendingtext.getText().toString())).getAsync(result -> {
+//                    if (result.isSuccess()) {
+//                        Toast.makeText(getApplicationContext(),"Data send to Databse",Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Log.v("Data", "Sending Failed");
+//                    }
+//                });
+//                mongoCollection.insertOne(new Document("user id", user.getId()).append("College-name", collegename.getText().toString())).getAsync(result -> {
+//                    if (result.isSuccess()) {
+//
+//                    } else {
+//                        Log.v("Data", "");
+//                    }
+//                });
+//                mongoCollection.insertOne(new Document("user id", user.getId()).append("User-Age", Age.getText().toString())).getAsync(result -> {
+//                    if (result.isSuccess()) {
+//
+//                    } else {
+//                        Log.v("Data", "");
+//                    }
+//                });
 
 
 
